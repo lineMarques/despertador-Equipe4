@@ -1,12 +1,16 @@
 import { Router } from "express";
-import DespertadorController from "./app/controllers/DespertadorController.js";
-import send from "send";
+import { getClima } from "./endpoints.js";
 
 const router = Router();
 
 /* Rota para teste de servidor */
 router.get("/teste", (req, res) => {
   res.status(200).send("Servidor rodando");
+});
+
+router.get("/clima/:cidade", async (req, res) => {
+  let clima = await getClima(req.params);  
+  res.status(200).send(clima);
 });
 
 export default router;
