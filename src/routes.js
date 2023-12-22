@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getClima } from "./endpoints.js";
+import { getClima} from "./endpoints.js";
 
 const router = Router();
 
@@ -9,7 +9,7 @@ router.get("/teste", (req, res) => {
 });
 
 router.get("/clima/:cidade", async (req, res) => {
-  let clima = await getClima(req.params);  
+  let clima =  await getClima(req.params.cidade);
   res.status(200).send(clima);
 });
 
