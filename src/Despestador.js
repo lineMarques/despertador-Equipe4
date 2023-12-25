@@ -2,8 +2,8 @@
 import "dotenv/config";
 
 class Despestador {
-  /* função assincrona para consumo da api hgWeather */
 
+  /* função assincrona para consumo da api hgWeather - retorna informações do clima*/
   async getClima(cidade) {
     const key = process.env.KEY;
     let clima = await fetch(
@@ -12,6 +12,7 @@ class Despestador {
     return clima.json();
   }
 
+  /* funçao retorna hora do sistema */
   getHoraCerta() {
     let today = new Date();
     let hora = today.getHours();
@@ -20,8 +21,11 @@ class Despestador {
     return "horaCerta " + hora + ":" + minuto + ":" + segundo;
   }
 
+  /* função retorna o dia de hoje formatado */
   getHoje() {
     let today = new Date();
+
+    /* esta variavel é a sigla dos numeros ordinais em ingles - sr, nd, rd, th */
     let ordinal = "";
 
     switch (today.getDay) {
@@ -44,7 +48,6 @@ class Despestador {
 
     return today.toString().slice(0, 10) + ordinal + ", " + today.getFullYear();
   }
-
 }
 
 export default Despestador;
