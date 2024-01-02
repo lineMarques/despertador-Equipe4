@@ -1,8 +1,10 @@
 /* Pacote para usar o arquivo .env */
 import "dotenv/config";
 
-class Despestador {
+/* modulo para interagir com o sistema de arquivos   */
+import { promises } from "fs";
 
+class Despertador {
   /* função assincrona para consumo da api hgWeather - retorna informações do clima*/
   async getClima(cidade) {
     const key = process.env.KEY;
@@ -48,6 +50,17 @@ class Despestador {
 
     return today.toString().slice(0, 10) + ordinal + ", " + today.getFullYear();
   }
+
+  async postConfig(formatoHora, escalaTemp, cidade, sexo, nome) {  
+    
+    const fs = promises;
+    try {
+      (await fs.writeFile("config.txt", formatoHora + "," + escalaTemp + "," + cidade + "," + sexo + "," +   nome)) +
+        "\n";
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
-export default Despestador;
+export default Despertador;
