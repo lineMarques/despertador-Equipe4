@@ -1,26 +1,19 @@
-class DespertadorController{
+import DespertadorRepository from "../repositories/DespertadorRepository.js";
 
-    index(req, res){
-        
+class DespertadorController {
+  index() {}
 
-    }
+  show() {}
 
-    show(){
+  /* Grava as configurações em um documento config.txt */
+  store(req, res) {
+    let config =  DespertadorRepository.create(req.body.formatoHora, req.body.escalaTemp, req.body.cidade, req.body.sexo, req.body.nome)
+    res.status(200).json(config)
+  }
 
-    }
+  update() {}
 
-    store(){
-
-    }
-
-    update(){
-
-    }
-
-    delete(){
-        
-    }
-
+  delete() {}
 }
 
-export default new DespertadorController
+export default new DespertadorController();
