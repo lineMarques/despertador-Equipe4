@@ -1,4 +1,4 @@
-import Despestador from "../src/Despestador.js";
+import Despestador from "../src/Despertador.js";
 
 describe("Testes Despertador.js", () => {
   test('Função getClima(cidade) - dado cidade = Itajai, o resultado esperado eh condições climaticas {"date", "condition_code",  "sunrise", "sunset", "city_name", "max", "min"', () => {
@@ -40,5 +40,5 @@ describe("Testes Despertador.js", () => {
     expect(resul).toEqual(today.toString().slice(0, 10) + ordinal + ", " + today.getFullYear())
     
   });
-  
+
 });
