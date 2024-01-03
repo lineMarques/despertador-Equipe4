@@ -38,11 +38,16 @@ router.get("/hoje", (req, res) => {
   res.status(200).send(hoje);
 });
 
+/* EndPoint de teste para gravar configurações */
 router.get("/testeht", async (req, res) => {
   res.status(200).sendFile(__dirname + "/views/teste.html");
 });
 
+/* EndPoint para gravar configurações */
 router.post("/config", DespertadorController.store);
+
+/* EndPoint para retornar configurações */
+router.get("/config", DespertadorController.index);
 
 
 

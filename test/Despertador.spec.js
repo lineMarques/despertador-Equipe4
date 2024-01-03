@@ -41,4 +41,11 @@ describe("Testes Despertador.js", () => {
     
   });
 
+  test('Função getconfig(), o resultado esperado são as configurações do despertador', async () => {
+    let despertador = new Despestador();
+    let resul = await despertador.getConfig();   
+    expect(resul).toEqual({"message": "sucesso", "status": 0, "value": {"cidade": "Itajai", "escalaTemp": "12", "formatoHora": "20:04", "sexo": "F"}})
+  });
+  
+
 });

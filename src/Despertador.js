@@ -51,15 +51,44 @@ class Despertador {
     return today.toString().slice(0, 10) + ordinal + ", " + today.getFullYear();
   }
 
-  async postConfig(formatoHora, escalaTemp, cidade, sexo, nome) {  
-    
+  /* função para gravar as configurações no documento config.txt */
+  async postConfig(formatoHora, escalaTemp, cidade, sexo, nome) {
     const fs = promises;
     try {
-      (await fs.writeFile("config.txt", formatoHora + "," + escalaTemp + "," + cidade + "," + sexo + "," +   nome)) +
+      (await fs.writeFile("config.txt", formatoHora + "," + escalaTemp + "," + cidade + "," + sexo + "," + nome)) +
         "\n";
     } catch (error) {
       console.log(error);
     }
+  }
+
+  /* função que retorna as configurações no documento config.txt */
+  async getConfig() {
+    try {
+   
+      const fs = promises;
+      let configs = await fs.readFile("config.txt", "utf-8");
+      let configDados = configs.split(",");
+  
+      let configObj = {
+        formatoHora: configDados[0],
+        escalaTemp: configDados[1],
+        cidade: configDados[2],
+        sexo: configDados[3],
+      };
+  
+      let status = {
+        status: 0,
+        message: 'sucesso',
+        value: configObj
+      }
+      
+      return status;
+
+    } catch (error) {
+      console.log(error);
+    }
+   
   }
 }
 
